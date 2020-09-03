@@ -1,0 +1,319 @@
+Linear Search- uses array, does not require data to be stored in any order, disadvantage is its inefficient, if there was 20,000 it would have to go through all of them, should not be used in large arrays
+
+simple algorithm, sometimes called sequential search, it uses a loop to sequentially step through an array, starting with the first element. It then compares each element with the value being searched for and stops when either the value is found or the end of the array is encountered and it realizes the value is not there
+
+Binary Search- much more efficient than linear search, does require the values in the array to be in order, every time it makes a comparison and fails it eliminates half of the remaining portion of the array that must be searched
+
+Instead of testing the first one it starts with the element in the middle and if it is the value its searching for than great is found it otherwise the value in the middle is either bigger or smaller than the value being searched for. Lets say its smaller, then it goes to the bottom half and takes half of that. It keeps going until it finds the value
+
+Bubble Sort- An easy way to arrange data in ascending or descending order
+
+Sorting algorithms are used to arrange data into some order
+
+Bubble sort works by comparing each element in the array with its neighbor and swapping them if they are are not desired order. It starts by comparing each element in the array if element 0 is greater than element 1 they are exchanged. The process then goes to element 1 and 2 and so on. After it goes all the way through it is called the first pass of sort, the largest value is put in the correct spot. The second pass goes through and puts the second largest number is the right spot. Basically the smaller numbers switch over to the left throughout all the passes.
+
+Actual code has a do while loop with a for if loop nested inside
+
+Selection Sort- so bubble sort is inefficient for large arrays because repeated data swaps are often required to put a single item in its correct position, the selection sort also places just one item in its correct position on each pass but is does it in fewer changes because it moves the items immediately to their correct position in the array
+
+It works by scanning the array and finding the smallest value and then swaps the value with the contents of element 0. Now the smallest element is in the right spot. It then goes again but since element 0 already contains the right value it starts at element 1 and so on.
+
+Actual code also has nested loops it has two nested for loops and a nested if loop
+
+Algorithm Analysis- so we can test how well an algorithm works by counting the number of steps it requires to solve a problem
+
+An algorithm is a step by step procedure for solving a problem and is the basic strategy used in designing a program, often more than one algorithm is used to solve a given problem. Ex: linear and binary search.
+
+So how do we decide which one to use? We judge on space and time. Space is the amount of memory the algorithm requires and the time refers to the length of execution time
+
+
+Terminology
+-computational problem: a problem solved by an algorithm
+-basic step: an operation in the algorithm that executes in a constant about of time
+-examples of basic steps
+	- change the contents of two variaBles
+	-compare two values
+-non-example of a basic step:
+	-find the largest element in an array
+-complexity of an algorithm: the number of basic steps required to execute the algorithm of ran input of size N (N= number of input values)
+-worst-case complexity of an algorithm: the number of basic steps for input of size N that require the most work
+-average case complexity function: the complexity for typical, average inputs of size N
+
+linear search as the size of the problem increases the time it takes us to solve the problem increases in binary search the as the size of the problem increases the time it takes us to solve the problem increases but not as much, bubble sorts the time increases a lot
+
+
+Algorithm Complexity- We measure the complexity of an algorithm that solves a computational problems by determining the number of basic steps it requires for an input of size n.
+
+Algorithm 1:
+1: sum = 0
+2: k = 0
+3: While k<n do
+4: 	sum = sum + a[k]
+5:	k = k + 1
+6: End While 
+1 and 2 preform basic operations so they can be grouped together and count as one basic operation (A). Since the loop operates together they can also count as one operation (B).
+Operation (A) operates one time regardless of how big n is while operation (B) operates n times
+
+Worst case complexity function of an algorithm is the number of steps it preforms on an input of size n that requires the most work. It shows the longest time the algorithm will ever take to solve an instance of size n
+
+Average case complexity function is used when we know the relative frequencies with which different inputs are likely to occur in practice
+
+Big O Notation- so we compare to see which function is the best, we do this by seeing what happens to the ratio f(n)/g(n) when n gets large
+
+Basically how programers talk about algorithms, algorithms are functions in your program and big 0 notation is determined by how it responds to different inputs. How much slower is it if we give it 1000 things vs 1 thing, big o is telling us how long the worst case scenario would take
+
+So the value gets closer to 3 as n gets large meaning F preforms 3 times as many basic operations as G, however still equivalent
+
+Another example would be as the value gets closer to infinity as n gets closers to infinity F does a lot more work than G so this makes G the better algorithm
+
+Big O notation
+
+O(n) = linear, straight line kinda up
+	-linear time, likes single pass or constant number of passes, the time it takes to run n inputs is directly correlated to the n amount of inputs
+
+O(lg n) = up curve across, binary search
+
+O(n2) = across curve up
+	-quadric time, worst case complexity functions of bubble sort, selection sort, for every item in the list, which is n, we have to do n more operations, across curve up because it slows down fast 
+
+O(1) = straight line across
+	-worst case complexity runs in constant time, no matter how big the input is it always takes the same amount of time to compute things
+
+Recursion- a recursive function is one that calls itself
+
+Recursion
+
+A recursive function is one that calls itself, we have seen this done before but this is just another way of doing it. Here is an example:
+
+void message()
+{
+	cout << “This is a recursive function.” << endl;
+	message();
+}
+
+So basically this is a never ending function because it keeps calling itself and keeps printing out “This is a recursive function.” again and again. Therefore recursive functions must always have a base case, a way to stop it or a way to control the number of recursive calls. Here is the same thing but now is not an infinite loop
+
+void message()
+{
+	if(times > 0)
+	{
+		cout << “This is a recursive function.” << endl;
+		message(times - 1);
+	}
+}
+
+*So if they use message(3); it would call the function 4 times but only write out “This is a recursive function.” 3 times because the 4th time it would get to 0 and then go away
+
+********HOW THE RECURSIVE FUNCTIONS WORK*******
+
+So basically recursive functions call all the functions and then make their way back so in this example it would call “This is a recursive function.” 4 times because on the 4th time it realizes its done and then cycles back up through what it called. Each time the function is called a new instance of the time parameter is created in memory. The first time the function is called, the times parameter is set to 3. When the function calls itself, a new instance of times is created, and the value 2 is passed into it. This cycle repeats until zero is passed to the function. Since the function is called four times the depth of the recursion is four. After it realizes the 4th one is the last one then the 3rd copy of the function regains control and then the second copy of the function regains control and so on so it cycles back up through the copies to the beginning.
+
+So here is an example of how it returns after it goes through all the copies
+
+int main()
+{
+	message(3);
+	return 0;
+}
+
+void message(int times)
+{
+	cout << “Message “ << times << endl;
+	if (times < 0)
+	{
+		message(times - 1)
+	}
+	cout << “Message “ << times << “ is returning” << endl;
+}
+
+OUTPUT
+Message 3
+Message 2
+Message 1
+Message 0
+Message 0 is returning
+Message 1 is returning
+Message 2 is returning
+Message 3 is returning
+Recursion can be used when the solution can be best expressed in terms of simpler or smaller, problems of the same type.
+
+	Ex: You could use recursion when sorting a long list of names. You could start by splitting the list into two sublists and assigning the two sublists to two different people to sort. Once they have sorted the subsists you need to put them back together. They can be merged into a sorted version of the original list by a suitable collecting process. So in this case sorting the sublists are the simpler problems of the same type and then the base case would occur when the sublists consist of a single name.
+
+Here is an example of a recursive function that counts the number of times a character appears in a string
+
+int frequency(char ch, string inputString, int pos);
+
+int main()
+{
+	string inputString = “abcddddef”;
+
+	cout << “The letter d appears “ << frequency( ‘d’, inputString, 0) << “times.” << endl;
+
+	return 0;
+}
+
+int frequency(char ch, string inputString, int position)
+{
+	if(position == inputString.length())	//base case
+		return 0;
+	if(inputString[position] == ch)
+		return 1 + frequency(ch, inputString, position + 1);
+	else
+		return frequency(ch, inputString, position + 1);
+}
+
+
+14.3 The Recursive gcd Function
+
+-Greatest common divisor (gcd) of two integers x and y is the largest number that divides both x and y with no remainder
+
+-If y divides x, then gcd(x,y) is just y
+-Ohterwise the cvd(x,y) is the gcd of y and the remainder of dividing x by y
+
+int gcd(int x, int y)
+{
+	if (x%y==0) //base case
+		return y;
+	else
+		return gcd(y, x%y)
+}
+
+14.4 Solving recursively defined problems
+
+The natural definitiono of some problems ears to a recursive solution
+
+EX: fibonacci numbers:
+0, 1, 1, 2, 3, 5, 8, 13, 21
+
+
+After the initial 0 and 1, each term is the sum of the two preceding terms
+
+int fib(int n)
+{
+	if (n<=0) //Base case
+		return 0;
+	else if (n==1) //Base case
+		return 1
+	else
+		return fib(n-1) +fib(n-2)
+
+14.5 A recursive binary search function
+
+-Assume an array a that is sorted in ascending order, and an item x to search for
+
+-We want to write a function that searches for x within the array a, returning the index of x if it is found, and returning -1 if x is not in the array
+
+o(log>2n) do not need a specific base you can just use o(log n)
+
+*binary search is log rhythm based
+
+Recursive binary search- a recursive strategy for searching a portion of the array from index lo to index hi is to set m to the index of the middle element of the array
+
+int bSearch(const int a[], int lo, int hi, int x)
+{
+int m = (lo+hi)
+
+Chapter 14
+
+14.8 Exhaustive and Enumeration Algorithms
+
+Enumeration algorithm: generate all possible combinations
+	Ex: all possible way to make change for a certain amount of money
+
+Exhaustive algorithm: search a set of combinations to find an optimal one
+	Ex: change for a certain amount of money that used the fewest coins
+
+14.9 Recursion vs. Iteration
+
+Benefits (+), disadvantages (-) for recursion:
+	+ Natural formulation of solution to certain problems
+	+ Results in shorter, simpler functions
+	- May not execute very efficiently
+Benefits (+), disadvantages (-) for iteration:
+	+ Executes more efficiently than recursion
+	- May not be as natural a method of solution as recursion for some problems
+
+Recursive Binary Search
+
+*The running time of binary search is O(lg n)
+takes O(n) to copy an array
+
+O(lg n) + O(n) = O(n) because it dominates
+
+if a[m] == x, we found x, so return m //Passing the whole array
+if a[m] > x, recursively search a[lo….m-1] //Searching the smaller sub array, only the part that we want like the bottom half
+if a[m] < x, recursively search a[m+1…hi] //Top half
+
+Merge sort running time O(nlgn)
+
+if we sort before doing binary search O(lg n) + O(nlgn) //O(nlgn) is going to dominate
+
+If we only need to sort the array once but we need to make a lot of searches
+
+
+Exceptions- exceptions are used to signal errors or unexpected events that occur while a program is running
+
+You can usually error test with if statements but sometimes you need something more sophisticated
+
+Throwing an exception: throw string()
+
+Handling an exception: try/catch block
+
+The This Pointer- The compiler provides each member function of a class with an implicit parameter that points to the object through which the member function is called, the implicit parameter is called this.
+
+The this pointer prints out the address of the object through which it is calla as well as the value of the instance member x in the same object
+
+cout << “The object at address “ << this << “ has value “ << (*this).x << endl;
+
+ob1.printAddressandValue();
+ob2.printAddressandValue();
+
+OUTPUT:
+
+The object at address 0x241ff5c has value 10
+The object at address 0x241ff58 has value 20
+
+** this->x is equivalent to (*this).x
+
+Constant Member Functions- a parameter that is passed to a function by reference or through a pointer may be modified by that function. The const key word is used with a parameter to prevent the called function from modifying it
+
+void fun(const string *str);
+
+this function takes a pointer to a string object as a parameter, but will not be able to modify the object
+
+you can also put it right after the parameter and this shows the compiler that the member function should not be allowed to modify its object
+
+int getValue() const;
+
+Static Member Variables- if a member is declares static all objects of that class have access to that variable. If a member function is declared static, it may be called before any instances of the class are defined
+
+Ex: 
+
+class StatDemo
+{
+Private:
+	static int x;
+}
+
+Outside the cals:
+
+int StatDemo::x;
+
+Static Member Functions- a member function of a class can be declared static by prefixing its declaration with the key word static
+
+static<return type><function name>(<parameter list>)
+
+static double getCorpBudget()
+
+static member functions are normally used to work with static member variables of the class
+
+Friend Classes- a friend is a function that is not a member of a class, but has access to the private members of the class, basically a friend function is treated as though it was a member of the class, it can be a regular stand alone function or it can be a member of another class, an entire class can actually be declares a friend of another class
+
+In order for a function or class to become a friend of another class it has to be declared by the class granting access, classes keep a “list” of their friends and only the external functions or classes whose names appear in the list are granted access, a function is declared a friend by placing the key word friend in from top a prototype of the function
+
+friend void Aux::addBudget(double);
+
+Default Memberwise Assignment- the = operator
+
+Copy Constructors- a special constructor thats called whenever a new object is created and initialized with the data of another object of the same class
+
