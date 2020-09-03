@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+void decToBin(int decimalValue);
+void binToDec(string);
+
+int main()
+{
+  int decimalValue;
+
+  cout << "Enter a non-negative integer value: ";
+  cin >> decimalValue;
+
+if (decimalValue < 0)
+{
+cout << endl << "Invalid Entry." << endl << endl;
+}
+else
+{
+      cout << endl << "Decimal " << decimalValue << " = ";
+      decToBin(decimalValue);
+      cout << endl << endl;
+      }
+
+	return 0;
+}
+
+void decToBin(int decimalValue)
+{
+    int remainder;
+
+    remainder = decimalValue % 2; //if remainder the value is one
+    decimalValue = decimalValue / 2;
+
+	if (decimalValue > 0)
+	{
+		decToBin(decimalValue);
+
+	}
+	else if (decimalValue = 0)
+	{
+		return;
+	}
+
+	cout << remainder; //when here prints out after recursion is done in reverse order
+}

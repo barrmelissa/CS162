@@ -1,0 +1,100 @@
+# include <iostream>
+# include <cstdlib>
+# include <cstring>
+
+using namespace std;
+
+
+void selectionSort(string [], int);
+void showArray(string [], int);
+void upperCase(string []);
+
+int main()
+{
+
+	//creates the size of the array
+	string b;
+	int SIZE;
+	cout << "Size of the Array"<<endl;
+	cin >> SIZE;
+
+	//Array of unsorted values
+	string values[SIZE];
+	cout << "words to be sorted"<<endl;
+
+//allos for the filling of the array
+	for(int i =0; i< SIZE; i++)
+	{
+
+		cin >> b;
+		values[i] = b;
+
+	}
+
+	//Display the values
+
+	cout << "unsorted values"<<endl;
+	showArray(values, SIZE);
+
+	//Sort the Array
+
+	selectionSort(values, SIZE);
+
+	//Display the values again
+
+	cout<<"sorted values"<<endl;
+	showArray(values, SIZE);
+	return 0;
+}
+
+//converts everything in string to uppercase
+
+void upperCase(string &stringConvertion) //& takes in the address of the string
+{
+	for(int j=0; j< stringConvertion.length(); j++)
+	{
+		stringConvertion[j] = toupper(stringConvertion[j]);
+	}
+}
+
+//selectionSort
+
+void selectionSort(string array[],int size)
+{
+	int startScan, minIndex;
+	string minValue;
+	for(startScan = 0; startScan < (size -1); startScan++)
+	{
+		minIndex = startScan;
+		minValue = array[startScan];
+		for(int index = startScan + 1; index < size; index++)
+		{
+			//temp variables for the value of the strings
+			string stringConvertionA;
+			string stringConvertionB;
+			stringConvertionA = minValue;
+			stringConvertionB = array[index];
+
+		//passes string for uppercase converstion
+			upperCase(stringConvertionA);
+			upperCase(stringConvertionB);
+
+			if(stringConvertionB< stringConvertionA)
+			{
+				minValue = array[index];
+				minIndex = index;
+			}
+		}
+		array[minIndex] = array[startScan];
+		array[startScan] = minValue;
+	}
+
+}
+
+//showArray
+void showArray(string array[],int size)
+{
+	for(int count = 0; count < size; count++)
+		cout << array[count] << " "<<endl;
+
+}
